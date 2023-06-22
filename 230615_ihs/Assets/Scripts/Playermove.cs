@@ -2,41 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Playermove : MonoBehaviour
+public class ObjectMove : MonoBehaviour
 {
-
-    public GameObject player;
     int step = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if(step == 1)
+        float y = this.transform.position.y;
+        float x = this.transform.position.x;
+
+        if (y >= 2f)
         {
-
-            player.transform.position -= new Vector3(10 * Time.deltaTime, 0, 0);
+            step = 1;
         }
-
+        if (x >= 2f && y >= 2f)
+        {
+            step = 2;
+        }
+        if (x >= 2f && y <= -2f)
+        {
+            step = 3;
+        }
         else
         {
-
+            if (step == 3 && x <= -2f)
+            {
+                step = 0;
+            }
         }
-    }
-    
-    public void LeftMove()
-    {
-        step = 1; 
-    }
 
-    public void RigthMove()
-    {
-        step = 2;
+        switch (step)
+        {
+            case 0:
+                this.transform.position += new Vector3(0, 2 * Time.deltaTime, 0);
+                break;
+            case 1:
+                this.transform.position += new Vector3(2 * Time.deltaTime, 0, 0);
+                break;
+            case 2:
+                this.transform.position -= new Vector3(0, 2 * Time.deltaTime, 0);
+                break;
+            case 3:
+                this.transform.position -= new Vector3(2 * Time.deltaTime, 0, 0);
+                break;
+        }
+
     }
 
 }
