@@ -5,17 +5,28 @@ using UnityEngine;
 public class Main : MonoBehaviour
 {
 
- 
-    // Start is called before the first frame update
+    List<Character> characterList;
+
     void Start()
     {
-        Enemy e1 = new Enemy("alf", 10);
-        Enemy e2 = new Enemy("dragon", 100);
+        characterList = new List<Character>();
 
-        e1 GetEnemyinfo();
-        e2 GetEnemyinfo();
 
     }
+
+
+    public void CreateCharacter(Character c)
+    {
+        characterList.Add(c);
+    }
+
+    public void RemoveCharacter(int index)
+    {
+
+    }
+
+ 
+  
 
     // Update is called once per frame
     void Update()
