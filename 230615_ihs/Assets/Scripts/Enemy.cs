@@ -5,20 +5,48 @@ using System;
 
 public class Enemy
 {
-    private string name;
+    enum EnemyType
+    {
+        Basic = 0,
+        Range,
+    }
+
+    private EnemyType enemyType;
     private int hp;
+    private int atk;
+    private int speed;
 
-    public Enemy(string name, int hp) // 생성자   초기화 해주는 것
+
+    public Enemy(Enemy type, int hp, int atk, int speed) // 생성자   초기화 해주는 것
     {
-        this.name = name;
+        this.enemyType = type;
         this.hp = hp;
+        this.atk = akt;
+        this.speed = speed;
     }
 
-
-    public void GetEnemyinfo()
+    public int Hp
     {
-        Debug.Log("dddddd");
+        get { return this.hp; }
     }
+    public int Atk
+    {
+        get { return this.atk; }
+    }
+    public int Speed
+    {
+        get { return this.speed}
+    }
+
+    public bool Hit(int dmg)
+    {
+        if (this.hp - dmg <= 0) return false;
+        this.hp -= dmg;
+        return true;
+    }
+
+    
+
   
 }
 
